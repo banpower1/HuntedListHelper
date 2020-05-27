@@ -1,0 +1,10 @@
+## Interface: 11304
+## Title: Hunted List Helper
+## Author: Banpower1
+## Version: 0.2
+## SavedVariables: HLH_HuntedList, HuntedListHelper_OutputChannel
+
+externalDeps.xml
+HuntedListHelper.xml
+HuntedListHelper.lua
+HuntedListHelper_Parse.lua
