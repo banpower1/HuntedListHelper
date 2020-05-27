@@ -6,13 +6,13 @@ function HuntedListHelper:OnInitialize()
     -- Code that runs when the addon is first loaded
     HuntedListHelper:RegisterChatCommand("hlh", "SlashProcessor");
     HuntedListHelper:RegisterChatCommand("hlhp", "PlayerLookup");
-    tinsert(UISpecialFrames, HuntedListHelper_Frame:GetName());
+    tinsert(UISpecialFrames, HuntedListHelper_ImportFrame:GetName());
     
-    HuntedListHelper_Frame_ButtonUpdate:SetScript("OnClick", HuntedListHelper_UpdateHuntedList)
+    HuntedListHelper_ImportFrame_ButtonUpdate:SetScript("OnClick", HuntedListHelper_UpdateHuntedList)
 
-    HuntedListHelper_EditBox:SetScript("OnKeyDown", function(self, key)
+    HuntedListHelper_ImportFrame_EditBox:SetScript("OnKeyDown", function(self, key)
         if GetBindingFromClick(key)=="TOGGLEGAMEMENU" then
-            HuntedListHelper_Frame:Hide();
+            HuntedListHelper_ImportFrame:Hide();
         end
     end);
 
@@ -116,9 +116,9 @@ end
 -- ------------------
 
 function HuntedListHelper_UpdateHuntedList(self)
-    local RawHuntedList = HuntedListHelper_EditBox:GetText();
-    HuntedListHelper_EditBox:SetText("");
-    HideUIPanel(HuntedListHelper_Frame);
+    local RawHuntedList = HuntedListHelper_ImportFrame_EditBox:GetText();
+    HuntedListHelper_ImportFrame_EditBox:SetText("");
+    HideUIPanel(HuntedListHelper_ImportFrame);
     if HuntedListHelper_Parse(RawHuntedList) then
         print("Huntedlist Updated");
     else
@@ -128,7 +128,7 @@ end
 
 function HuntedListHelper:SlashProcessor(input)
     if input == "" then
-        ShowUIPanel(HuntedListHelper_Frame);
+        ShowUIPanel(HuntedListHelper_ImportFrame);
     else
         if #HLH_HuntedList == 0 then
             print("!WARNING! Huntedlist empty !WARNING!");
