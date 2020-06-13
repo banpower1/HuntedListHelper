@@ -1,14 +1,29 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ 
                    ..\..\FrameXML\UI.xsd">
 
-  <Frame name="HuntedListHelper_ImportFrame" parent="UIParent" toplevel="true" enableMouse="true" movable="true" hidden="false">
+  <Frame name="HuntedListHelper_TabFrame"
+    toplevel="true"
+    frameStrata="DIALOG"
+    movable="true"
+    resizable="true"
+    enableMouse="true"
+    hidden="false"
+    clampedToScreen="true"
+    parent="UIParent">
     <Size>
-      <AbsDimension x="400" y="400"/>
+      <AbsDimension x="480" y="325"/>
     </Size>
     <Anchors>
-      <Anchor point="CENTER"/>
+      <Anchor point="CENTER">
+        <Offset>
+          <AbsDimension x="0" y="130"/>
+        </Offset>
+      </Anchor>
     </Anchors>
-    <Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+    <Backdrop
+      bgFile="Interface\DialogFrame\UI-DialogBox-Background"
+      edgeFile="Interface\DialogFrame\UI-DialogBox-Border"
+      tile="true">
       <BackgroundInsets>
         <AbsInset left="11" right="12" top="12" bottom="11"/>
       </BackgroundInsets>
@@ -21,23 +36,23 @@
     </Backdrop>
     <Layers>
       <Layer level="ARTWORK">
-        <Texture name="$parent_Header" file="Interface\DialogFrame\UI-DialogBox-Header">
+        <Texture name="HLH_myFrameHeader" file="Interface\DialogFrame\UI-DialogBox-Header">
           <Size>
-            <AbsDimension x="440" y="74"/>
+            <AbsDimension x="356" y="64"/>
           </Size>
           <Anchors>
             <Anchor point="TOP">
               <Offset>
-                <AbsDimension x="0" y="30"/>
+                <AbsDimension x="0" y="12"/>
               </Offset>
             </Anchor>
           </Anchors>
         </Texture>
-        <FontString inherits="GameFontNormal" text="Hunted List Helper - Import" name="$parent_Title">
+        <FontString inherits="GameFontNormal" text="Hunted List Helper">
           <Anchors>
-            <Anchor point="TOP" relativeTo="HuntedListHelper_ImportFrame_Header">
+            <Anchor point="TOP" relativeTo="HLH_myFrameHeader">
               <Offset>
-                <AbsDimension x="0" y="-17"/>
+                <AbsDimension x="0" y="-14"/>
               </Offset>
             </Anchor>
           </Anchors>
@@ -45,57 +60,249 @@
       </Layer>
     </Layers>
     <Frames>
-      <ScrollFrame>
-        <Size>
-          <AbsDimension x="368" y="368"/>
-        </Size>
+      <Button name="$parent_closeButton" inherits="UIPanelCloseButton">
         <Anchors>
-          <Anchor point="CENTER"/>
+          <Anchor point="TOPRIGHT">
+            <Offset>
+              <AbsDimension x="-4" y="-6"/>
+            </Offset>
+          </Anchor>
         </Anchors>
-        <ScrollChild>
-          <Frame>
-            <Size>
-              <RelDimension x="1.0" y="1.0"/>
-            </Size>
+        <Scripts>
+          <OnClick>
+            HuntedListHelper_TabFrame:Hide();
+          </OnClick>
+        </Scripts>
+      </Button>
+      <Frame name="HLH_myTabPage1" hidden="false">
+        <Anchors>
+          <Anchor point="TOPLEFT"/>
+          <Anchor point="BOTTOMRIGHT"/>
+        </Anchors>
+        <Layers>
+          <Layer level="ARTWORK">
+              <FontString inherits="GameFontNormal" text="All Hunts">
+                <Anchors>
+                  <Anchor point="TOPLEFT" relativeTo="$parent">
+                    <Offset>
+                      <AbsDimension x="20" y="-20"/>
+                    </Offset>
+                  </Anchor>
+                </Anchors>
+              </FontString>
+            </Layer>
+        </Layers>
+        <Frames>
+        </Frames> 
+      </Frame>   
+      <Frame name="HLH_myTabPage2" hidden="true">
+        <Anchors>
+          <Anchor point="TOPLEFT"/>
+          <Anchor point="BOTTOMRIGHT"/>
+        </Anchors>
+        <Layers>
+          <Layer level="ARTWORK">
+            <FontString inherits="GameFontNormal" text="My Hunts">
+              <Anchors>
+                <Anchor point="TOPLEFT" relativeTo="$parent">
+                  <Offset>
+                    <AbsDimension x="20" y="-20"/>
+                  </Offset>
+                </Anchor>
+              </Anchors>
+            </FontString>
+          </Layer>
+        </Layers>
+        <Frames>
+        </Frames> 
+      </Frame>
+      <Frame name="HLH_myTabPage3" hidden="true">
+        <Anchors>
+          <Anchor point="TOPLEFT"/>
+          <Anchor point="BOTTOMRIGHT"/>
+        </Anchors>
+        <Layers>
+          <Layer level="ARTWORK">
+            <FontString inherits="GameFontNormal" text="Import">
+              <Anchors>
+                <Anchor point="TOPLEFT" relativeTo="$parent">
+                  <Offset>
+                    <AbsDimension x="20" y="-20"/>
+                  </Offset>
+                </Anchor>
+              </Anchors>
+            </FontString>
+          </Layer>
+        </Layers>
+        <Frames>
+          <Frame name="$parentEditBox" enableMouse="false">
             <Anchors>
-              <Anchor point="CENTER"/>
+              <Anchor point="TOPLEFT" relativeTo="HLH_myTabPage3" relativePoint="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="15" y="-40"/>
+                </Offset>
+              </Anchor>
+              <Anchor point="BOTTOMRIGHT">
+                <Offset>
+                  <AbsDimension x="-15" y="40"/>
+                </Offset>
+              </Anchor>
             </Anchors>
+            <Layers>
+              <Layer level="ARTWORK">
+                <FontString name="$parentImportLayoutBox" inherits="GameFontHighlight" justifyH="LEFT" justifyV="TOP">
+                  <Size>
+                    <AbsDimension x="20" y="32"/>
+                  </Size>
+                  <Anchors>
+                    <Anchor point="TOP">
+                      <Offset>
+                        <AbsDimension x="1" y="-6"/>
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                </FontString>
+              </Layer>
+            </Layers>
             <Frames>
-              <EditBox name="$parent_EditBox" font="GameFontNormal" letters="0" multiLine="true" autoFocus="false">
+              <ScrollFrame>
+                <Size>
+                  <AbsDimension x="368" y="368"/>
+                </Size>
                 <Anchors>
                   <Anchor point="TOPLEFT">
                     <Offset>
-                      <AbsDimension x="0" y="0"/>
+                      <AbsDimension x="5" y="-5"/>
                     </Offset>
                   </Anchor>
                   <Anchor point="BOTTOMRIGHT">
                     <Offset>
-                      <AbsDimension x="0" y="0"/>
+                      <AbsDimension x="-5" y="5"/>
                     </Offset>
                   </Anchor>
                 </Anchors>
-              </EditBox>
+                <ScrollChild>
+                  <Frame>
+                    <Size>
+                      <RelDimension x="1.0" y="1.0"/>
+                    </Size>
+                    <Anchors>
+                      <Anchor point="CENTER"/>
+                    </Anchors>
+                    <Frames>
+                      <EditBox name="$parentText" font="GameFontNormal" letters="0" multiLine="true" autoFocus="false">
+                        <Anchors>
+                          <Anchor point="TOPLEFT">
+                            <Offset>
+                              <AbsDimension x="0" y="0"/>
+                            </Offset>
+                          </Anchor>
+                          <Anchor point="BOTTOMRIGHT">
+                            <Offset>
+                              <AbsDimension x="0" y="0"/>
+                            </Offset>
+                          </Anchor>
+                        </Anchors>
+                        <Scripts>
+                          <OnEscapePressed>
+                            self:ClearFocus();
+                          </OnEscapePressed>
+                        </Scripts>
+                      </EditBox>
+                    </Frames>
+                  </Frame>
+                </ScrollChild>
+              </ScrollFrame>
             </Frames>
+            <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+              <EdgeSize>
+                <AbsValue val="16"/>
+              </EdgeSize>
+              <TileSize>
+                <AbsValue val="16"/>
+              </TileSize>
+              <BackgroundInsets>
+                <AbsInset left="5" right="5" top="5" bottom="5"/>
+              </BackgroundInsets>
+            </Backdrop>
           </Frame>
-        </ScrollChild>
-      </ScrollFrame>
-      <Button name="$parent_ButtonClose" inherits="OptionsButtonTemplate" text="Close">
+          <Button name="$parent_ButtonUpdate" inherits="OptionsButtonTemplate" text="Update">
+            <Anchors>
+              <Anchor point="BOTTOM">
+                <Offset x="0" y="16"/>
+              </Anchor> 
+            </Anchors>
+          </Button>
+        </Frames> 
+      </Frame>
+      <Button name="$parentTab1" inherits="CharacterFrameTabButtonTemplate" id="1" text="All Hunts">
         <Anchors>
-          <Anchor point="BOTTOMRIGHT">
-            <Offset x="-12" y="-20"/>
-          </Anchor> 
+          <Anchor point="CENTER" relativePoint="BOTTOMLEFT">
+            <Offset>
+              <AbsDimension x="60" y="-12"/>
+            </Offset>
+          </Anchor>
         </Anchors>
         <Scripts>
-          <OnClick> self:GetParent():Hide(); </OnClick>
+          <OnClick>
+            HLH_myTabPage1:Show();
+            HLH_myTabPage2:Hide();
+            HLH_myTabPage3:Hide();
+          </OnClick>
         </Scripts>
       </Button>
-      <Button name="$parent_ButtonUpdate" inherits="OptionsButtonTemplate" text="Update">
+      <Button name="$parentTab2" inherits="CharacterFrameTabButtonTemplate" id="2" text="My Hunts">
         <Anchors>
-          <Anchor point="BOTTOMLEFT">
-            <Offset x="12" y="-20"/>
-          </Anchor> 
+          <Anchor point="LEFT" relativeTo="$parentTab1" relativePoint="RIGHT">
+            <Offset>
+              <AbsDimension x="-16" y="0"/>
+            </Offset>
+          </Anchor>
         </Anchors>
+        <Scripts>
+          <OnClick>
+            HLH_myTabPage1:Hide();
+            HLH_myTabPage2:Show();
+            HLH_myTabPage3:Hide();
+          </OnClick>
+        </Scripts>
+      </Button>
+      <Button name="$parentTab3" inherits="CharacterFrameTabButtonTemplate" id="3" text="Import">
+        <Anchors>
+          <Anchor point="LEFT" relativeTo="$parentTab2" relativePoint="RIGHT">
+            <Offset>
+              <AbsDimension x="-16" y="0"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Scripts>
+          <OnClick>
+            HLH_myTabPage1:Hide();
+            HLH_myTabPage2:Hide();
+            HLH_myTabPage3:Show();
+          </OnClick>
+        </Scripts>
       </Button>
     </Frames>
+    <Scripts>
+      <OnLoad>
+        self:RegisterForDrag("LeftButton","RightButton");
+      </OnLoad>
+      <OnShow>
+        HLH_myTabPage1:Show();
+        HLH_myTabPage2:Hide();
+        HLH_myTabPage3:Hide();
+      </OnShow>
+      <OnDragStart>
+        if button == "LeftButton" then
+          self:StartMoving()
+        elseif button == "RightButton" then
+          self:StartSizing()
+        end
+      </OnDragStart>
+      <OnDragStop>
+        self:StopMovingOrSizing();
+      </OnDragStop>
+    </Scripts>
   </Frame>
 </Ui>
