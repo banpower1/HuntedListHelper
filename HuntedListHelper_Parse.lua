@@ -8,7 +8,7 @@ local ExpectedHeaderFirefox = [[Hunted liste ALFA
 
                             
 1
-    Rank    Navn    Klasse    Item - MC    
+    Rang    Navn    Klasse    Item - MC    
 MC Prio
     Item - BWL    
 BWL Prio
@@ -17,7 +17,7 @@ BWL Prio
 
 local ExpectedHeaderChrome = [[Hunted liste ALFA
 Hunted listeItems
-Rank    Navn    Klasse    Item - MC    
+Rang    Navn    Klasse    Item - MC    
 MC Prio
 Item - BWL    
 BWL Prio

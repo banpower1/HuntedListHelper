@@ -111,9 +111,9 @@ end
 
 function HuntedListHelper_UpdateHuntedList(self)
     local RawHuntedList = HLH_myTabPage3EditBoxText:GetText();
-    HLH_myTabPage3EditBoxText:SetText("");
     if HuntedListHelper_Parse(RawHuntedList) then
         print("Huntedlist Updated");
+        HLH_myTabPage3EditBoxText:SetText("");
     else
         print("Error parsing input");
     end
