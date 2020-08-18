@@ -99,6 +99,10 @@ local function CheckItem(item)
             Msg("Prio "..HLH_HuntedList[i]["prioBWL"].." - "..HLH_HuntedList[i]["player"].." for "..HLH_HuntedList[i]["itemBWL"]);
             HuntFound = true;
         end
+        if itemname == HLH_HuntedList[i]["itemAQ40"] then
+            Msg("Prio "..HLH_HuntedList[i]["prioAQ40"].." - "..HLH_HuntedList[i]["player"].." for "..HLH_HuntedList[i]["itemAQ40"]);
+            HuntFound = true;
+        end
     end
     if not HuntFound then
         Msg(itemname.." is not hunted!");
@@ -143,7 +147,16 @@ function HuntedListHelper:PlayerLookup(input)
             for i=1,#HLH_HuntedList do
                 if input:lower() == HLH_HuntedList[i]["player"]:lower() then
                     PlayerFound = true;
-                    Msg(HLH_HuntedList[i]["player"].." is hunting "..HLH_HuntedList[i]["itemMC"].." in MC with prio "..HLH_HuntedList[i]["prioMC"].." and "..HLH_HuntedList[i]["itemBWL"].." in BWL with prio "..HLH_HuntedList[i]["prioBWL"]);
+                    Msg(HLH_HuntedList[i]["player"].." hunts:");
+                    if HLH_HuntedList[i]["itemMC"] ~= "" then
+                        Msg("MC: prio "..HLH_HuntedList[i]["prioMC"].." - "..HLH_HuntedList[i]["itemMC"]);
+                    end
+                    if HLH_HuntedList[i]["itemBWL"] ~= "" then
+                        Msg("BWL: prio "..HLH_HuntedList[i]["prioBWL"].." - "..HLH_HuntedList[i]["itemBWL"]);
+                    end
+                    if HLH_HuntedList[i]["itemAQ40"] ~= "" then
+                        Msg("AQ40: prio "..HLH_HuntedList[i]["prioAQ40"].." - "..HLH_HuntedList[i]["itemAQ40"]);
+                    end
                 end
             end
             if not PlayerFound then

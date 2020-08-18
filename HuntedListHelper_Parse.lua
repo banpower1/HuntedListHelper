@@ -2,25 +2,24 @@ local FORMAT_UNKNOWN = 0;
 local FORMAT_FIREFOX = 1;
 local FORMAT_CHROME = 2;
 
-local ExpectedHeaderFirefox = [[Hunted liste ALFA
-
-    Hunted listeItems
-
-                            
+local ExpectedHeaderFirefox = [[Hunted liste ALFA : Hunted liste
+                                    
 1
     Rang    Navn    Klasse    Item - MC    
 MC Prio
     Item - BWL    
 BWL Prio
-                            
+    Item - AQ40    
+AQ40 Prio
 ]]
 
-local ExpectedHeaderChrome = [[Hunted liste ALFA
-Hunted listeItems
+local ExpectedHeaderChrome = [[Hunted liste ALFA : Hunted liste
 Rang    Navn    Klasse    Item - MC    
 MC Prio
 Item - BWL    
 BWL Prio
+Item - AQ40    
+AQ40 Prio
 ]]
 
 local ExpectedLenFirefox = ExpectedHeaderFirefox:len();
@@ -55,6 +54,7 @@ end
 local function ParseLine(line)
     local iBeg, iEnd, iBegOld, iEndOld = 0, 0, 0, 0;
 
+    -- Info
     iBegOld, iEndOld = iBeg, iEnd;
     iBeg, iEnd = line:find("    ", iEnd+1);
     local role = line:sub(iEndOld+1, iBeg-1);
@@ -67,6 +67,7 @@ local function ParseLine(line)
     iBeg, iEnd = line:find("    ", iEnd+1);
     local class = line:sub(iEndOld+1, iBeg-1);
     
+    -- MC
     iBegOld, iEndOld = iBeg, iEnd;
     iBeg, iEnd = line:find("    ", iEnd+1);
     local itemMC = line:sub(iEndOld+1, iBeg-1);
@@ -75,15 +76,25 @@ local function ParseLine(line)
     iBeg, iEnd = line:find("    ", iEnd+1);
     local prioMC = line:sub(iEndOld+1, iBeg-1);
     
+    -- BWL
     iBegOld, iEndOld = iBeg, iEnd;
     iBeg, iEnd = line:find("    ", iEnd+1);
     local itemBWL = line:sub(iEndOld+1, iBeg-1);
     
     iBegOld, iEndOld = iBeg, iEnd;
-    --iBeg, iEnd = line:find("    ", iEnd); -- Since this is the last entry we cant search further
-    local prioBWL = line:sub(iEndOld+1);
+    iBeg, iEnd = line:find("    ", iEnd+1);
+    local prioBWL = line:sub(iEndOld+1, iBeg-1);
 
-    table.insert(HLH_HuntedList, {["role"]=role, ["player"]=player, ["class"]=class, ["itemMC"]=itemMC, ["prioMC"]=prioMC, ["itemBWL"]=itemBWL, ["prioBWL"]=prioBWL});
+    -- AQ40
+    iBegOld, iEndOld = iBeg, iEnd;
+    iBeg, iEnd = line:find("    ", iEnd+1);
+    local itemAQ40 = line:sub(iEndOld+1, iBeg-1);
+
+    iBegOld, iEndOld = iBeg, iEnd;
+    --iBeg, iEnd = line:find("    ", iEnd); -- Since this is the last entry we cant search further
+    local prioAQ40 = line:sub(iEndOld+1);
+
+    table.insert(HLH_HuntedList, {["role"]=role, ["player"]=player, ["class"]=class, ["itemMC"]=itemMC, ["prioMC"]=prioMC, ["itemBWL"]=itemBWL, ["prioBWL"]=prioBWL, ["itemAQ40"]=itemAQ40, ["prioAQ40"]=prioAQ40});
 end
 
 function HuntedListHelper_Parse(RawHuntedList)

@@ -81,18 +81,67 @@
         </Anchors>
         <Layers>
           <Layer level="ARTWORK">
-              <FontString inherits="GameFontNormal" text="All Hunts">
-                <Anchors>
-                  <Anchor point="TOPLEFT" relativeTo="$parent">
-                    <Offset>
-                      <AbsDimension x="20" y="-20"/>
-                    </Offset>
-                  </Anchor>
-                </Anchors>
-              </FontString>
-            </Layer>
+            <FontString inherits="GameFontNormal" text="All Hunts">
+              <Anchors>
+                <Anchor point="TOPLEFT" relativeTo="$parent">
+                  <Offset>
+                    <AbsDimension x="20" y="-20"/>
+                  </Offset>
+                </Anchor>
+              </Anchors>
+            </FontString>
+          </Layer>
+          <Layer level="ARTWORK">
+            <FontString inherits="GameFontNormal" text="Name | Rank | MC hunt | Prio | BWL hunt | Prio">
+              <Anchors>
+                <Anchor point="TOPLEFT" relativeTo="$parent">
+                  <Offset>
+                    <AbsDimension x="20" y="-45"/>
+                  </Offset>
+                </Anchor>
+              </Anchors>
+            </FontString>
+          </Layer>
         </Layers>
         <Frames>
+          <ScrollFrame name="HLH_AllHuntsScroll" parentKey="ListScrollFrame" inherits="HybridScrollFrameTemplate">
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="15" y="-65"/>
+                </Offset>
+              </Anchor>
+              <Anchor point="BOTTOMRIGHT">
+                <Offset>
+                  <AbsDimension x="-40" y="15"/>
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Frames>
+              <Slider parentKey="scrollBar" inherits="HybridScrollBarTemplate">
+                <Anchors>
+                  <Anchor point="TOPLEFT" relativePoint="TOPRIGHT" x="0" y="-15"/>
+                  <Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT" x="0" y="15"/>
+                </Anchors>
+                <Layers>
+                  <Layer level="BACKGROUND">
+                    <Texture parentKey="Background" file="Interface\DialogFrame\UI-DialogBox-Background" horizTile="true" vertTile="true" setAllPoints="true"/>
+                  </Layer>
+                </Layers>
+              </Slider>
+            </Frames>
+            <Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+              <EdgeSize>
+                <AbsValue val="16"/>
+              </EdgeSize>
+              <TileSize>
+                <AbsValue val="16"/>
+              </TileSize>
+              <BackgroundInsets>
+                <AbsInset left="5" right="5" top="5" bottom="5"/>
+              </BackgroundInsets>
+            </Backdrop>
+          </ScrollFrame>
         </Frames> 
       </Frame>   
       <Frame name="HLH_myTabPage2" hidden="true">

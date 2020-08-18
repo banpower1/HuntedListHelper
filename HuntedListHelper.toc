@@ -1,7 +1,7 @@
-## Interface: 11304
+## Interface: 11305
 ## Title: Hunted List Helper
 ## Author: Banpower1
-## Version: 0.2
+## Version: 0.3
 ## SavedVariables: HLH_HuntedList, HuntedListHelper_OutputChannel
 
 externalDeps.xml
